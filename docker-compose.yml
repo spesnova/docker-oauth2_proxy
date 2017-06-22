@@ -1,0 +1,13 @@
+version: "2"
+services:
+  oauth2_proxy:
+    image: quay.io/spesnova/oauth2_proxy:2.2
+    depends_on:
+      - upstream
+    env_file: .env
+    environment:
+      - OAUTH2_PROXY_UPSTREAM=http://upstream/
+    ports:
+      - "4180:4180"
+  upstream:
+    image: nginx
