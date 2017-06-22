@@ -94,13 +94,13 @@ provider = "{{ var "OAUTH2_PROXY_PROVIDER" | default "google" }}"
 {{ if .OAUTH2_PROXY_SCOPE }} scope = "{{ var "OAUTH2_PROXY_SCOPE" }}" {{ end }}
 {{ if .OAUTH2_PROXY_APPROVAL_PROMPT }} approval_prompt = "{{ var "OAUTH2_PROXY_APPROVAL_PROMPT" }}" {{ end }}
 
-## Google Provider
+## Google Auth Provider
 {{ if .OAUTH2_PROXY_GOOGLE_GROUP }} google_group = "{{ var "OAUTH2_PROXY_GOOGLE_GROUP" }}" {{ end }}
 {{ if .OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL }} google_admin_email = "{{ var "OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL" }}" {{ end }}
 {{ if .OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON }} google_service_account_json = "{{ var "OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON" }}" {{ end }}
-## Azure Provider
+## Azure Auth Provider
 {{ if .OAUTH2_PROXY_AZURE_TENANT }} azure_tenant = "{{ var "OAUTH2_PROXY_AZURE_TENANT" }}" {{ end }}
-## GitHub Provider
+## GitHub Auth Provider
 {{ if .OAUTH2_PROXY_GITHUB_ORG }} github_org = "{{ var "OAUTH2_PROXY_GITHUB_ORG" }}" {{ end }}
 {{ if .OAUTH2_PROXY_GITHUB_TEAM }} github_team = "{{ var "OAUTH2_PROXY_GITHUB_TEAM" }}" {{ end }}
 
