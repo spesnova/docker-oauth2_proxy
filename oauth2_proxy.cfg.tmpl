@@ -2,19 +2,19 @@
 ## https://github.com/bitly/oauth2_proxy
 
 ## Proxy Prefix
-{{ if .OAUTH2_PROXY_PROXY_PREFIX }} proxy-prefix = "{{ var "OAUTH2_PROXY_PROXY_PREFIX" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PROXY_PREFIX" }}proxy-prefix = "{{ var "OAUTH2_PROXY_PROXY_PREFIX" }}" {{ end }}
 
 ## <addr>:<port> to listen on for HTTP/HTTPS clients
 http_address = "{{ var "OAUTH2_PROXY_HTTP_ADDRESS" | default "127.0.0.1:4180" }}"
 https_address = "{{ var "OAUTH2_PROXY_HTTPS_ADDRESS" | default ":443" }}"
 
 ## TLS Settings
-{{ if .OAUTH2_PROXY_TLS_CERT_FILE }} tls_cert_file = "{{ var "OAUTH2_PROXY_TLS_CERT_FILE" }}" {{ end }}
-{{ if .OAUTH2_PROXY_TLS_KEY_FILE }} tls_key_file = "{{ var "OAUTH2_PROXY_TLS_KEY_FILE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_TLS_CERT_FILE" }}tls_cert_file = "{{ var "OAUTH2_PROXY_TLS_CERT_FILE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_TLS_KEY_FILE" }}tls_key_file = "{{ var "OAUTH2_PROXY_TLS_KEY_FILE" }}" {{ end }}
 
 ## the OAuth Redirect URL.
 # defaults to the "https://" + requested host header + "/oauth2/callback"
-{{ if .OAUTH2_PROXY_REDIRECT_URL }} redirect_url = "{{ var "OAUTH2_PROXY_REDIRECT_URL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_REDIRECT_URL" }}redirect_url = "{{ var "OAUTH2_PROXY_REDIRECT_URL" }}" {{ end }}
 
 ## the http url(s) of the upstream endpoint. If multiple, routing is based on path
 upstreams = [
@@ -22,14 +22,14 @@ upstreams = [
 ]
 
 ## Log requests to stdout
-{{ if .OAUTH2_PROXY_REQUEST_LOGGING }} request_logging = "{{ var "OAUTH2_PROXY_REQUEST_LOGGING" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_REQUEST_LOGGING" }}request_logging = "{{ var "OAUTH2_PROXY_REQUEST_LOGGING" }}" {{ end }}
 
 ## pass HTTP Basic Auth, X-Forwarded-User and X-Forwarded-Email information to upstream
-{{ if .OAUTH2_PROXY_PASS_BASIC_AUTH }} pass_basic_auth = "{{ var "OAUTH2_PROXY_PASS_BASIC_AUTH" }}" {{ end }}
-{{ if .OAUTH2_PROXY_PASS_USER_HEADERS }} pass_user_headers = "{{ var "OAUTH2_PROXY_PASS_USER_HEADERS" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PASS_BASIC_AUTH" }}pass_basic_auth = "{{ var "OAUTH2_PROXY_PASS_BASIC_AUTH" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PASS_USER_HEADERS" }}pass_user_headers = "{{ var "OAUTH2_PROXY_PASS_USER_HEADERS" }}" {{ end }}
 ## pass the request Host Header to upstream
 ## when disabled the upstream Host is used as the Host Header
-{{ if .OAUTH2_PROXY_PASS_HOST_HEADERS }} pass_host_header = "{{ var "OAUTH2_PROXY_PASS_HOST_HEADERS" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PASS_HOST_HEADERS" }}pass_host_header = "{{ var "OAUTH2_PROXY_PASS_HOST_HEADERS" }}" {{ end }}
 
 ## Email Domains to allow authentication for (this authorizes any email on this domain)
 ## for more granular authorization use `authenticated_emails_file`
@@ -43,24 +43,24 @@ client_id = "{{ var "OAUTH2_PROXY_CLIENT_ID" }}"
 client_secret = "{{ var "OAUTH2_PROXY_CLIENT_SECRET" }}"
 
 ## Pass OAuth Access token to upstream via "X-Forwarded-Access-Token"
-{{ if .OAUTH2_PROXY_PASS_ACCESS_TOKEN }} pass_basic_auth = "{{ var "OAUTH2_PROXY_PASS_ACCESS_TOKEN" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PASS_ACCESS_TOKEN" }}pass_basic_auth = "{{ var "OAUTH2_PROXY_PASS_ACCESS_TOKEN" }}" {{ end }}
 
 ## Authenticated Email Addresses File (one email per line)
-{{ if .OAUTH2_PROXY_AUTHENTICATED_EMAILS_FILE }} authenticated_emails_file = "{{ var "OAUTH2_PROXY_AUTHENTICATED_EMAILS_FILE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_AUTHENTICATED_EMAILS_FILE" }}authenticated_emails_file = "{{ var "OAUTH2_PROXY_AUTHENTICATED_EMAILS_FILE" }}" {{ end }}
 
 ## Htpasswd File (optional)
 ## Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -s" for SHA encryption
 ## enabling exposes a username/login signin form
-{{ if .OAUTH2_PROXY_HTPASSWD_FILE }} htpasswd_file = "{{ var "OAUTH2_PROXY_HTPASSWD_FILE" }}" {{ end }}
-{{ if .OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM }} display_htpasswd_form = {{ var "OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM" }} {{ end }}
+{{ if var "OAUTH2_PROXY_HTPASSWD_FILE" }}htpasswd_file = "{{ var "OAUTH2_PROXY_HTPASSWD_FILE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM" }}display_htpasswd_form = {{ var "OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM" }} {{ end }}
 
 ## Templates
 ## optional directory with custom sign_in.html and error.html
-{{ if .OAUTH2_PROXY_CUSTOM_TEMPLATES_DIR }} custom_templates_dir = "{{ var "OAUTH2_PROXY_CUSTOM_TEMPLATES_DIR" }}" {{ end }}
-{{ if .OAUTH2_PROXY_FOOTER }} footer = "{{ var "OAUTH2_PROXY_FOOTER" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_CUSTOM_TEMPLATES_DIR" }}custom_templates_dir = "{{ var "OAUTH2_PROXY_CUSTOM_TEMPLATES_DIR" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_FOOTER" }}footer = "{{ var "OAUTH2_PROXY_FOOTER" }}" {{ end }}
 
 ## skip SSL checking for HTTPS requests
-{{ if .OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY }} ssl_insecure_skip_verify = "{{ var ".OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY" }}ssl_insecure_skip_verify = "{{ var ".OAUTH2_PROXY_SSL_INSECURE_SKIP_VERIFY" }}" {{ end }}
 
 
 ## Cookie Settings
@@ -76,33 +76,33 @@ client_secret = "{{ var "OAUTH2_PROXY_CLIENT_SECRET" }}"
 ##            (ie: 1h means tokens are refreshed on request 1hr+ after it was set)
 ## Secure   - secure cookies are only sent by the browser of a HTTPS connection (recommended)
 ## HttpOnly - httponly cookies are not readable by javascript (recommended)
-{{ if .OAUTH2_PROXY_COOKIE_NAME }} cookie_name = "{{ var "OAUTH2_PROXY_COOKIE_NAME" | default "_oauth2_proxy" }}" {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_SECRET }} cookie_secret = "{{ var "OAUTH2_PROXY_COOKIE_SECRET " }}" {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_DOMAIN }} cookie_domain = "{{ var "OAUTH2_PROXY_COOKIE_DOMAIN" }}" {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_EXPIRE }} cookie_expire = "{{ var "OAUTH2_PROXY_COOKIE_EXPIRE" }}" {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_REFRESH }} cookie_refresh = "{{ var "OAUTH2_PROXY_COOKIE_REFRESH" }}" {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_SECURE }} cookie_secure = {{ var "OAUTH2_PROXY_COOKIE_SECURE" }} {{ end }}
-{{ if .OAUTH2_PROXY_COOKIE_HTTPONLY }} cookie_httponly = {{ var "OAUTH2_PROXY_COOKIE_HTTPONLY" }} {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_NAME" }}cookie_name = "{{ var "OAUTH2_PROXY_COOKIE_NAME" | default "_oauth2_proxy" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_SECRET" }}cookie_secret = "{{ var "OAUTH2_PROXY_COOKIE_SECRET" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_DOMAIN" }}cookie_domain = "{{ var "OAUTH2_PROXY_COOKIE_DOMAIN" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_EXPIRE" }}cookie_expire = "{{ var "OAUTH2_PROXY_COOKIE_EXPIRE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_REFRESH" }}cookie_refresh = "{{ var "OAUTH2_PROXY_COOKIE_REFRESH" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_SECURE" }}cookie_secure = {{ var "OAUTH2_PROXY_COOKIE_SECURE" }} {{ end }}
+{{ if var "OAUTH2_PROXY_COOKIE_HTTPONLY" }}cookie_httponly = {{ var "OAUTH2_PROXY_COOKIE_HTTPONLY" }} {{ end }}
 
 ## Provider Settings
 provider = "{{ var "OAUTH2_PROXY_PROVIDER" | default "google" }}"
-{{ if .OAUTH2_PROXY_LOGIN_URL }} login_url = "{{ var "OAUTH2_PROXY_LOGIN_URL" }}" {{ end }}
-{{ if .OAUTH2_PROXY_REDEEM_URL }} redeem_url = "{{ var "OAUTH2_PROXY_REDEEM_URL" }}" {{ end }}
-{{ if .OAUTH2_PROXY_PROFILE_URL }} profile_url = "{{ var "OAUTH2_PROXY_PROFILE_URL" }}" {{ end }}
-{{ if .OAUTH2_PROXY_RESOURCE }} resource = "{{ var "OAUTH2_PROXY_RESOURCE" }}" {{ end }}
-{{ if .OAUTH2_PROXY_VALIDATE_URL }} validate_url = "{{ var "OAUTH2_PROXY_VALIDATE_URL" }}" {{ end }}
-{{ if .OAUTH2_PROXY_SCOPE }} scope = "{{ var "OAUTH2_PROXY_SCOPE" }}" {{ end }}
-{{ if .OAUTH2_PROXY_APPROVAL_PROMPT }} approval_prompt = "{{ var "OAUTH2_PROXY_APPROVAL_PROMPT" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_LOGIN_URL" }}login_url = "{{ var "OAUTH2_PROXY_LOGIN_URL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_REDEEM_URL" }}redeem_url = "{{ var "OAUTH2_PROXY_REDEEM_URL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_PROFILE_URL" }}profile_url = "{{ var "OAUTH2_PROXY_PROFILE_URL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_RESOURCE" }}resource = "{{ var "OAUTH2_PROXY_RESOURCE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_VALIDATE_URL" }}validate_url = "{{ var "OAUTH2_PROXY_VALIDATE_URL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_SCOPE" }}scope = "{{ var "OAUTH2_PROXY_SCOPE" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_APPROVAL_PROMPT" }}approval_prompt = "{{ var "OAUTH2_PROXY_APPROVAL_PROMPT" }}" {{ end }}
 
 ## Google Auth Provider
-{{ if .OAUTH2_PROXY_GOOGLE_GROUP }} google_group = "{{ var "OAUTH2_PROXY_GOOGLE_GROUP" }}" {{ end }}
-{{ if .OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL }} google_admin_email = "{{ var "OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL" }}" {{ end }}
-{{ if .OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON }} google_service_account_json = "{{ var "OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_GOOGLE_GROUP" }}google_group = "{{ var "OAUTH2_PROXY_GOOGLE_GROUP" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL" }}google_admin_email = "{{ var "OAUTH2_PROXY_GOOGLE_ADMIN_EMAIL" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON" }}google_service_account_json = "{{ var "OAUTH2_PROXY_GOOGLE_SERVICE_ACCOUNT_JSON" }}" {{ end }}
 ## Azure Auth Provider
-{{ if .OAUTH2_PROXY_AZURE_TENANT }} azure_tenant = "{{ var "OAUTH2_PROXY_AZURE_TENANT" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_AZURE_TENANT" }}azure_tenant = "{{ var "OAUTH2_PROXY_AZURE_TENANT" }}" {{ end }}
 ## GitHub Auth Provider
-{{ if .OAUTH2_PROXY_GITHUB_ORG }} github_org = "{{ var "OAUTH2_PROXY_GITHUB_ORG" }}" {{ end }}
-{{ if .OAUTH2_PROXY_GITHUB_TEAM }} github_team = "{{ var "OAUTH2_PROXY_GITHUB_TEAM" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_GITHUB_ORG" }}github_org = "{{ var "OAUTH2_PROXY_GITHUB_ORG" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_GITHUB_TEAM" }}github_team = "{{ var "OAUTH2_PROXY_GITHUB_TEAM" }}" {{ end }}
 
 # Signature Key
-{{ if .OAUTH2_PROXY_SIGNATURE_KEY }} signature_key = "{{ var "OAUTH2_PROXY_SIGNATURE_KEY" }}" {{ end }}
+{{ if var "OAUTH2_PROXY_SIGNATURE_KEY" }}signature_key = "{{ var "OAUTH2_PROXY_SIGNATURE_KEY" }}" {{ end }}
